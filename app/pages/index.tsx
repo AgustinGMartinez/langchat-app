@@ -1,10 +1,12 @@
-import Head from 'next/head'
+import Head from "next/head"
 
-export default function Home() {
+interface Props {}
+
+export default function Home(props: Props) {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Create Next Apps</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -28,10 +30,7 @@ export default function Home() {
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
-          <a
-            href="https://github.com/zeit/next.js/tree/master/examples"
-            className="card"
-          >
+          <a href="https://github.com/zeit/next.js/tree/master/examples" className="card">
             <h3>Examples &rarr;</h3>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
@@ -41,9 +40,7 @@ export default function Home() {
             className="card"
           >
             <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with ZEIT Now.
-            </p>
+            <p>Instantly deploy your Next.js site to a public URL with ZEIT Now.</p>
           </a>
         </div>
       </main>
@@ -133,8 +130,8 @@ export default function Home() {
           border-radius: 5px;
           padding: 0.75rem;
           font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+          font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+            Bitstream Vera Sans Mono, Courier New, monospace;
         }
 
         .grid {
@@ -190,9 +187,8 @@ export default function Home() {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+            Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
         }
 
         * {
