@@ -1,6 +1,7 @@
 import express from "express"
 import { Request, Response, NextFunction } from "express"
 import next from "next"
+import logger from "../services/logger"
 
 const port = parseInt(process.env.PORT!, 10) || 3000
 const dev = process.env.NODE_ENV !== "production"
@@ -22,7 +23,7 @@ app.prepare().then(() => {
   // TODO: implement actual error handler
   // nuestro error handler
   server.use((error: Error, req: Request, res: Response, next: NextFunction) => {
-    console.log({ error })
+    logger.info({ error })
     res.send("error handled")
   })
 
