@@ -1,10 +1,12 @@
 import express from "express"
 import { Request, Response, NextFunction } from "express"
 import next from "next"
-import logger from "../services/logger"
+import { logger } from "./services"
+require('dotenv').config();
+import config from 'config';
 
-const port = parseInt(process.env.PORT!, 10) || 3000
-const dev = process.env.NODE_ENV !== "production"
+const port = config.get('port');
+const dev = config.get('isDev') as boolean;
 const app = next({ dev, dir: "./app" })
 const handle = app.getRequestHandler()
 
@@ -23,12 +25,11 @@ app.prepare().then(() => {
   // TODO: implement actual error handler
   // nuestro error handler
   server.use((error: Error, req: Request, res: Response, next: NextFunction) => {
-    logger.info({ error })
+    logger.error({ msg: error.message })
     res.send("error handled")
   })
 
-  server.listen(port, (err: Error | undefined) => {
-    if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
+  server.listen(port, () => {
+    logger.info(`> Ready on http://localhost:${port}`);
   })
 })
