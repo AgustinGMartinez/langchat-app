@@ -1,8 +1,7 @@
-import Head from "next/head"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import Head from 'next/head'
 
-interface Props {}
-
-export default function Home(props: Props) {
+export default function Home() {
   return (
     <div className="container">
       <Head>

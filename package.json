@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "nodemon -w server/**/*.ts --ext ts --exec ts-node --project tsconfig.server.json server/server",
+    "start": "nodemon",
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build app",
     "build": "npm run build:next && npm run build:server",
-    "prod": "cross-env NODE_ENV=production node dist/server.js"
+    "prod": "cross-env NODE_ENV=production node dist/server.js",
+    "lint:app": "eslint --ext .ts --ext .tsx app/",
+    "lint:server": "eslint --ext .ts --ext .tsx server/",
+    "tsc:server": "tsc"
   },
   "dependencies": {
     "@types/express": "^4.17.6",
@@ -27,8 +30,33 @@
     "@types/config": "^0.0.36",
     "@types/node": "^13.13.2",
     "@types/react": "^16.9.34",
+    "@typescript-eslint/eslint-plugin": "2.15.0",
+    "@typescript-eslint/parser": "2.15.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-import": "2.20.0",
+    "eslint-plugin-prettier": "3.1.2",
+    "husky": "4.0.7",
+    "lint-staged": "9.5.0",
     "nodemon": "^2.0.3",
+    "prettier": "^2.0.5",
     "ts-node": "^8.9.0",
     "typescript": "^3.8.3"
+  },
+  "lint-staged": {
+    "app/**/*.{ts,tsx}": [
+      "yarn lint:app",
+      "git add"
+    ],
+    "server/**/*.{ts,tsx}": [
+      "yarn lint:server",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn tsc:server && lint-staged"
+    }
   }
 }
